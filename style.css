@@ -1,0 +1,44 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050c08;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100vh;font-family:Georgia,serif;overflow:hidden}
+.sparkle-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.sparkle-dot{position:absolute;border-radius:50%;background:#fff;animation:sparkleTwinkle var(--dur,2s) ease-in-out infinite alternate;animation-delay:var(--delay,0s)}
+@keyframes sparkleTwinkle{0%,100%{opacity:0}50%{opacity:1}}
+.welcome-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(8,14,24,0.98);display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity .8s,visibility .8s}
+.welcome-overlay.hide{opacity:0;visibility:hidden}
+.welcome-box{text-align:center;color:#fff;padding:36px;border-radius:20px;background:rgba(255,255,255,0.03);box-shadow:0 8px 40px rgba(0,0,0,.5);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06);max-width:90%;width:400px;animation:welcomeFloat 3s ease-in-out infinite}
+@keyframes welcomeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.welcome-box h1{font-size:26px;margin-bottom:15px;letter-spacing:1px;background:linear-gradient(135deg,#ffb6c1,#ff7b9c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.welcome-box p{font-size:15px;margin-bottom:25px;color:#94a3b8;line-height:1.5}
+#startBtn{background:linear-gradient(135deg,#ff758c,#ff7eb3);color:#fff;border:none;padding:14px 40px;font-size:16px;font-weight:bold;cursor:pointer;border-radius:30px;box-shadow:0 4px 20px rgba(255,117,140,.3);transition:transform .3s,box-shadow .3s}
+#startBtn:hover{transform:scale(1.06);box-shadow:0 6px 25px rgba(255,117,140,.5)}
+.book-container{perspective:2500px;width:720px;height:460px;position:relative;display:flex;justify-content:center;align-items:center;transition:opacity .7s,transform .7s;z-index:5}
+.book-container.hidden{opacity:0;pointer-events:none}
+.book{width:100%;height:100%;position:relative;transform-style:preserve-3d;transform:rotateY(-8deg) rotateX(3deg);transition:transform .6s ease;filter:drop-shadow(-20px 20px 35px rgba(0,0,0,.75))}
+.book-shadow{position:absolute;bottom:-25px;left:8%;width:84%;height:40px;background:radial-gradient(ellipse at center,rgba(0,0,0,.6),transparent 70%);border-radius:50%;filter:blur(8px);pointer-events:none;z-index:-1}
+.book-spine{position:absolute;left:-22px;top:0;width:22px;height:100%;background:linear-gradient(to right,#1a0a05,#3d2010,#2a1208);transform:rotateY(90deg) translateZ(-1px);transform-origin:right center;border-radius:3px 0 0 3px;box-shadow:inset -3px 0 10px rgba(0,0,0,.6);z-index:0}
+.book-pages-stack{position:absolute;right:-6px;top:2px;width:6px;height:96%;background:repeating-linear-gradient(to bottom,#e8e0d0 0px,#e8e0d0 1px,#d4c8b8 2px,#d4c8b8 3px);border-radius:0 2px 2px 0;box-shadow:2px 0 5px rgba(0,0,0,.3)}
+.page{width:50%;height:100%;position:absolute;top:0;right:0;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.6s cubic-bezier(.22,1,.36,1);z-index:1}
+.page-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;justify-content:center;align-items:center;padding:20px;user-select:none}
+.page-face.front{background:linear-gradient(160deg,#6a6a6a,#454545);color:#fff;border-radius:0 10px 10px 0;transform:rotateY(0deg);box-shadow:inset 8px 0 30px rgba(0,0,0,.5),2px 0 15px rgba(0,0,0,.3)}
+.text-content h2{font-size:21px;font-weight:300;text-align:center;letter-spacing:2px;line-height:1.6;text-shadow:0 2px 8px rgba(0,0,0,.5);position:relative;z-index:1}
+.page-face.back{background:linear-gradient(135deg,#fefefe,#e8e8e8);border-radius:10px 0 0 10px;transform:rotateY(180deg);box-shadow:inset -8px 0 30px rgba(0,0,0,.12),-2px 0 10px rgba(0,0,0,.08)}
+.img-frame{width:88%;height:88%;background:#fff;padding:12px;box-shadow:0 8px 25px rgba(0,0,0,.2);display:flex;justify-content:center;align-items:center;border-radius:4px;overflow:hidden}
+.img-frame img{width:100%;height:100%;object-fit:cover;border-radius:2px;transition:transform .5s}
+.img-frame:hover img{transform:scale(1.03)}
+.page.flipped{transform:rotateY(-180deg)}
+.controls{margin-top:40px;display:flex;gap:15px;z-index:10;transition:opacity .5s}
+.controls.hidden{opacity:0;pointer-events:none}
+.controls button{background:rgba(255,255,255,.06);color:#e2e8f0;border:1px solid rgba(255,255,255,.12);padding:12px 28px;font-size:14px;cursor:pointer;border-radius:25px;backdrop-filter:blur(8px);transition:all .3s;letter-spacing:.5px}
+.controls button:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.page-face.front.content-cover-brown{background:linear-gradient(135deg,#5d4037,#4a3728,#3e2723);padding:0}
+.page-face.back.content-cover-brown{background:linear-gradient(135deg,#4a3728,#3e2723)!important;box-shadow:none!important}
+.circle-brown{width:280px;height:280px;background:radial-gradient(ellipse at center,#4e342e,#3e2723);border-radius:50%;display:flex;justify-content:center;align-items:center;padding:25px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.circle-brown .text-content h2{font-size:18px;font-weight:300;line-height:1.7;letter-spacing:2px;color:#d4a574;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+.flower-scene{position:fixed;top:0;left:0;width:100%;height:100%;z-index:50;opacity:0;pointer-events:none;transition:opacity .6s ease}
+.flower-scene.show{opacity:1;pointer-events:auto}
+#flowerCanvas{position:absolute;top:0;left:0;width:100%;height:100%}
+.floating-heart{position:fixed;pointer-events:none;z-index:40;font-size:20px;animation:heartFloat linear forwards;opacity:0}
+@keyframes heartFloat{0%{opacity:0;transform:translateY(0) scale(.3) rotate(0)}15%{opacity:.7}85%{opacity:.5}100%{opacity:0;transform:translateY(-350px) translateX(80px) scale(1.1) rotate(15deg)}}
+.float-butterfly{position:fixed;pointer-events:none;z-index:45;width:0;height:0;opacity:0;animation:bfFloat var(--dur,4s) ease-out forwards}
+@keyframes bfFloat{0%{opacity:0;transform:translate(0,0) scale(.3)}10%{opacity:1;transform:translate(3px,-3px) scale(1)}85%{opacity:.7}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.4)}}
+@media(max-width:768px){.book-container{width:90vw;height:55vw}.flower-scene canvas{width:100%!important;height:100%!important}.controls button{padding:10px 20px;font-size:12px}.circle-brown{width:200px;height:200px}.text-content h2{font-size:16px}}
